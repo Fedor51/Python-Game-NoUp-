@@ -1,5 +1,4 @@
 import pygame  as pg
-from objs import Image
 
 class Game:
     def __init__(self,bg, size=(400, 300)):

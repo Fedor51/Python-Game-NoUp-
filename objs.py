@@ -106,11 +106,12 @@ class Bullet(Object):
         xy=(0, 0),
         color=(0, 0, 0),
         speed=1,
+        img="NoUp\\resourses\\img\\bul.png"
     ):
         super().__init__(size, xy, color)
 
         self.speed = speed 
-        self.skin.blit(pg.image.load("NoUp\\resourses\\img\\bul.png"),(0,0))
+        self.skin.blit(pg.image.load(img),(0,0))
 
     pg.init()
 
@@ -135,14 +136,6 @@ class Bullet(Object):
 
         bl.hitbox.x = bl.bx
         bl.hitbox.y = bl.by
-
-        # if bl.rec > 1:
-        #     if bl.hitbox.right >= size[0] or bl.hitbox.left <= 0:
-        #         bl.sx *= -1
-        #         bl.rec -= 1
-        #     if bl.hitbox.bottom >= size[1] or bl.hitbox.top <= 0:
-        #         bl.sy *= -1
-        #         bl.rec -= 1
 
         if not bl.hitbox.colliderect(surface.get_rect()):
             list.remove(bl)
@@ -170,7 +163,7 @@ class Button:
         # }
         # pg.Surface(size)
 
-        self.font = pg.font.Font("NoUp\\resourses\\font\\iknowaghost.ttf", 40)
+        self.font = pg.font.Font("NoUp\\resourses\\font\iknowaghost.ttf", 40)
         self.skin = pg.image.load('NoUp\\resourses\\img\\button_still.png')
         
         self.hitbox = self.skin.get_rect(topleft=xy)
@@ -216,10 +209,14 @@ class Obj_Image:
         self.hitbox =  self.skin.get_rect(topleft=xy)
 
 
-class Font():
+class Font:
     def __init__(self, font, text, color = (0,0,0),xy = (0,0)) -> None:
         self.font = font
+        self.color = color
         self.text = text
         self.xy = xy
-        self.obj = self.font.render(self.text,True,color)
+        self.obj = self.font.render(text,True,self.color)
+
+    # def update(self,t):
+    #     self.obj = self.font.render(t,True,self.color)
     
